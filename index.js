@@ -3,6 +3,8 @@ const app = express();
 const mongoose = require("mongoose");
 const authRoute = require("./routes/auth");
 const usersRoute = require("./routes/users");
+const moviesRoute = require("./routes/movies");
+const helperRoute = require("./routes/helper");
 require("dotenv").config();
 
 const URL =
@@ -28,6 +30,8 @@ app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
+app.use("/api/movies", moviesRoute);
+app.use("/", helperRoute);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server is up on PORT ${process.env.PORT}`);
