@@ -33,7 +33,7 @@ router.delete("/:id", verify, async (req, res) => {
   if (req.user.id === req.params.id || req.user.isAdmin) {
     try {
       const deletedUser = await User.findByIdAndDelete(req.params.id);
-      res.status(500).json(deletedUser);
+      res.status(200).json(deletedUser);
     } catch (err) {
       console.log(err);
     }

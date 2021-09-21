@@ -37,6 +37,21 @@ router.put("/:id", verify, async (req, res) => {
   }
 });
 
+// DELETE
+
+router.delete("/:id", verify, async (req, res) => {
+  if (req.user.isAdmin) {
+    try {
+      const deletedMovie = await Movie.findByIdAndDelete(req.params.id);
+      res.status(200).json(deletedMovie);
+    } catch (error) {
+      res.status(500).json(error);
+    }
+  } else {
+    res.status(403).json("You are not authorized!");
+  }
+});
+
 // GET
 router.get("/find/:id", verify, async (req, res) => {
   try {
@@ -76,5 +91,7 @@ router.get("/random", verify, async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+// GET ALL
 
 module.exports = router;

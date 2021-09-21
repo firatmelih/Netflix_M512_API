@@ -1,6 +1,13 @@
 const router = require("express").Router();
 
 const routes = {
+  About: {
+    version: "1.0.0",
+    type: "educational",
+    author: "github:firatmelih",
+    readMe:
+      "This is documentation for Netflix_M512_API you can find all endpoints bellow.",
+  },
   Users: {
     read: {
       byId: "GET: /api/users/find/:id",
@@ -25,7 +32,19 @@ const routes = {
     update: "PUT: /api/movies/:id",
     delete: "DELETE: /api/movies/:id",
   },
-  Lists: "",
+  Lists: {
+    create: "POST: /api/lists/",
+    read: {
+      byId: "GET: /api/lists/find/:id",
+      specific: {
+        movie: "GET: /api/lists/?type=movie",
+        series: "GET: /api/lists/?type=series",
+        movieCrime: "GET: /api/lists/?type=movie&genre=crime",
+        seriesCrime: "GET: /api/lists/?type=series&genre=crime",
+      },
+    },
+    delete: "DELETE: /api/lists/:id",
+  },
 };
 
 router.get("/", async (req, res) => {
